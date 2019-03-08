@@ -5,12 +5,10 @@ from datetime import datetime
 import hmac
 import json
 import subprocess
-from hmacKey import key
+from config import key, AURprojectMap
+key = key.encode()
 app = Flask(__name__)
 LOGFILE = '/srv/http/updateAUR/postlog'
-AURprojectMap = {
-    "CareF/deepin-dock-plugin-arch-update": "deepin-dock-plugin-arch-update",
-}
 
 @app.route('/', methods=['GET', 'POST'])
 def updateAUR():
