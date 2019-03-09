@@ -15,9 +15,10 @@ set -e
 git clone $AURdir
 cd $1
 sed -i "/pkgver=/cpkgver=$ver" PKGBUILD
+sed -i "/pkgrel=/cpkgrel=1" PKGBUILD
 sed -i "/md5sums/c$(makepkg -g)" PKGBUILD
 makepkg --printsrcinfo > .SRCINFO
 git commit PKGBUILD .SRCINFO -m "update to v$ver" --author="CareF <CareF.Lm@gmail.com>"
-# git push
+git push
 cd $tmpdir
 rm -rf $workdir
